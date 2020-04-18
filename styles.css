@@ -1,0 +1,80 @@
+body {
+  background-color: #444;
+}
+
+form label {
+  text-align: right;
+  font-weight: bold;
+}
+
+::placeholder {
+  color: #ccc !important;
+}
+
+:-ms-input-placeholder {
+  color: #ccc !important;
+}
+
+::-ms-input-placeholder {
+  color: #ccc !important;
+}
+
+section.main {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+div.box {
+  min-width: 700px;
+  border-radius: 10px;
+  background-color: #0286d0;
+  border: 2px solid #fff;
+}
+
+div.box div.box-header {
+  padding: 60px 20px 20px 20px;
+  color: #fff;
+  text-align: center;
+}
+
+div.box div.box-header img {
+  position: absolute;
+  width: 110px;
+  z-index: 100;
+  top: -8%;
+  left: 42%;
+}
+
+div.box div.box-header h2 {
+  letter-spacing: -1px;
+}
+
+div.box div.box-body {
+  padding: 20px 50px;
+  background-color: #029ae5;
+  color: #fff;
+}
+
+div.box div.box-footer {
+  padding: 20px;
+}
+
+button.btn.gold {
+  background-color: #ffc800;
+}
+
+.msg {
+  padding: 2%;
+  border-radius: 4px;
+  text-align: center
+}
+
+.msg-error {
+  background: #ff3232;
+}
+
+.msg-success {
+  background: #5be55b;
+}
