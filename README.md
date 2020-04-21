@@ -1,6 +1,6 @@
-# software-architeture
+# software-architecture
 
-####Arquivos da série de vídeos sobre arquitetura de software.
+#### Arquivos da série de vídeos sobre arquitetura de software.
 
 Para ter acesso aos arquivos navegue entre as branches criadas:
 * bad_code - 2º vídeo
