@@ -2,6 +2,9 @@
 
 namespace SRC\Model;
 
+use SRC\Service\Repository\SubscriptionRepository;
+use SRC\Service\Validation\Validator;
+
 class Subscription
 {
     public function register(array $data)
@@ -28,21 +31,12 @@ class Subscription
 
     private function saveSubscription($data)
     {
-        $connection = new Connection();
-        $mysqlConnection = $connection->getConnection();
-
         $data['identifier'] = $this->prepareIdentifierValue($data['identifier']);
         $data['graduated'] = $this->prepareGraduatedValue($data['graduated']);
 
-        mysqli_query($mysqlConnection,"INSERT INTO subscription 
-                                                      (name, email, identifier, birth_date, graduated, state)
-                                                  VALUES 
-                                                      ('".$data['name']."', '".$data['email']."',
-                                                      ".$data['identifier'].", '".$data['birth_date']."',
-                                                      ".$data['graduated'].", '".$data['state']."
-                                                      ')");
+        $repository = new SubscriptionRepository(new Connection());
 
-        if (mysqli_error($mysqlConnection)) {
+        if (!$repository->save($data)) {
             return false;
         }
 
@@ -63,18 +57,14 @@ class Subscription
 
     private function sendEmail($data)
     {
-        switch ($data['state']) {
-            case 'CE':
-                $msgEmail = 'Cabra bom, você está inscrito!';
-                break;
-            case 'BA':
-                $msgEmail = 'Meu rei, você está inscrito!';
-                break;
-            default:
-                $msgEmail = 'Gente boa, você está inscrito!';
-        }
+        $states = [
+            'CE' => 'Cabra bom, você está inscrito!',
+            'BA' => 'Meu rei, você está inscrito!',
+        ];
 
-        $email = new Email();
-        $email->send($data['email'], $msgEmail);
+        if (!empty($states[$data['email']])) {
+            $email = new Email();
+            $email->send($data['email'], $states[$data['email']]);
+        }
     }
 }
