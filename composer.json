@@ -1,0 +1,10 @@
+{
+  "require": {
+    "erandir/plug-route": "v3.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "SRC\\": "src/"
+    }
+  }
+}

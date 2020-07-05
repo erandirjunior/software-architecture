@@ -1,16 +1,3 @@
-<?php
-require_once 'Classes/Subscription.php';
-
-$return = [
-    'sucess' => false,
-    'error' => false,
-];
-
-if (!empty($_POST)) {
-    $subscription = new Subscription();
-    $return = $subscription->registry($_POST);
-}
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -31,23 +18,35 @@ if (!empty($_POST)) {
 </head>
 <body>
 <section class="main">
-    <form action="" method="POST">
+    <form action="/" method="POST">
         <div class="box">
             <div class="box-header">
                 <img src="images/logo-phpbr.png" alt="PHP Brasil" />
                 <h2><i class="fa fa-code"></i> Inscrições para o PHP papho</h2>
             </div>
             <div class="box-body">
-                <div class="form-group row" style="display: <?=$return['sucess'] ? 'block' : 'none'?>" >
-                    <div class="col-sm-12">
-                        <p class="msg msg-success"><?=$return['msg']?></p>
+                <?php
+                    if (!empty($success)) {
+                ?>
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <p class="msg msg-success"><?=$success?></p>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group row" style="display: <?=$return['error'] ? 'block' : 'none'?>" >
-                    <div class="col-sm-12">
-                        <p class="msg msg-error"><?=$return['msg']?></p>
+                <?php
+                    }
+                ?>
+                <?php
+                    if (!empty($error)) {
+                ?>
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <p class="msg msg-error"><?=$error?></p>
+                        </div>
                     </div>
-                </div>
+                <?php
+                    }
+                ?>
                 <div class="form-group row">
                     <label for="name" class="col-sm-3 col-form-label">Nome:</label>
                     <div class="col-sm-9">

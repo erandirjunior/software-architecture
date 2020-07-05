@@ -1,5 +1,7 @@
 <?php
 
+namespace SRC\Model;
+
 class Connection
 {
     public function getConnection()

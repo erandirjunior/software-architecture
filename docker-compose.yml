@@ -5,11 +5,17 @@ services:
     volumes:
       - .:/var/www/html
     environment:
-      - WEB_DOCUMENT_ROOT=/var/www/html
+      - WEB_DOCUMENT_ROOT=/var/www/html/public
     ports:
       - 8080:80
     depends_on:
       - db
+  composer:
+    container_name: composer_oo
+    image: composer
+    volumes:
+      - ./:/app
+    command: composer update
   db:
     image: mysql:5.7
     ports:

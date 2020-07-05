@@ -1,0 +1,97 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "3cbf33006587159cfeffec9fc6965749",
+    "packages": [
+        {
+            "name": "erandir/plug-http",
+            "version": "v1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/erandirjunior/plug-http.git",
+                "reference": "6eba2b86dbb0ebabc6449ca9deb214b18803225d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/erandirjunior/plug-http/zipball/6eba2b86dbb0ebabc6449ca9deb214b18803225d",
+                "reference": "6eba2b86dbb0ebabc6449ca9deb214b18803225d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PlugHttp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Antonio Erandir Feitosa Soares Junior",
+                    "email": "aefs12junior@gmail.com"
+                }
+            ],
+            "description": "HTTP library for php",
+            "time": "2019-08-01T23:05:55+00:00"
+        },
+        {
+            "name": "erandir/plug-route",
+            "version": "v3.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/erandirjunior/plug-route.git",
+                "reference": "4e050c492f462cd5d743a59c46b3f18043ff61f6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/erandirjunior/plug-route/zipball/4e050c492f462cd5d743a59c46b3f18043ff61f6",
+                "reference": "4e050c492f462cd5d743a59c46b3f18043ff61f6",
+                "shasum": ""
+            },
+            "require": {
+                "erandir/plug-http": "v1.7",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PlugRoute\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Antonio Erandir Feitosa Soares Junior",
+                    "email": "aefs12junior@gmail.com"
+                }
+            ],
+            "description": "Route library for php",
+            "time": "2019-08-02T00:02:27+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

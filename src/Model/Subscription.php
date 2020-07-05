@@ -1,79 +1,25 @@
 <?php
 
-require_once 'Connection.php';
-require_once 'Email.php';
+namespace SRC\Model;
 
 class Subscription
 {
-    public function registry(array $data)
+    public function register(array $data)
     {
-        $registrySaveWithSuccess = $this->registryIfNameNotEmpty($data);
+        $registrySaveWithSuccess = $this->saveSubscriptionIfDataAreValid($data);
 
         if ($registrySaveWithSuccess) {
-            $return = [
-                'sucess' => true,
-                'error' => false,
-                'msg' => "Sucesso ao efetuar inscrição"
-            ];
-        } else {
-            $return = [
-                'sucess' => false,
-                'error' => true,
-                'msg' => "Houve um erro ao efetuar inscrição"
-            ];
+            return ['success' => 'Sucesso ao efetuar inscrição'];
         }
 
-        return $return;
+        return ['error' => 'Houve um erro ao efetuar inscrição'];
     }
 
-    private function registryIfNameNotEmpty($data)
+    private function saveSubscriptionIfDataAreValid(array $data)
     {
-        if (empty($data['name'])) {
-            return false;
-        }
+        $validator = new Validator();
 
-        return $this->registryIfEmailNotEmpty($data);
-    }
-
-    private function registryIfEmailNotEmpty($data)
-    {
-        if (empty($data['email'])) {
-            return false;
-        }
-
-        return $this->registryIfIdentifierNotEmpty($data);
-    }
-
-    private function registryIfIdentifierNotEmpty($data)
-    {
-        if (empty($data['identifier'])) {
-            return false;
-        }
-
-        return $this->registryIfStateNotEmpty($data);
-    }
-
-    private function registryIfStateNotEmpty($data)
-    {
-        if (empty($data['state'])) {
-            return false;
-        }
-
-        return $this->registryIfBirthDateNotEmpty($data);
-    }
-
-    private function registryIfBirthDateNotEmpty($data)
-    {
-        if (empty($data['birth_date'])) {
-            return false;
-        }
-
-        return $this->registryIfGraduatedNotEmpty($data);
-    }
-
-    private function registryIfGraduatedNotEmpty($data)
-    {
-        if (empty($data['graduated'])) {
+        if (!$validator->validate($data)) {
             return false;
         }
 
@@ -83,11 +29,12 @@ class Subscription
     private function saveSubscription($data)
     {
         $connection = new Connection();
+        $mysqlConnection = $connection->getConnection();
 
         $data['identifier'] = $this->prepareIdentifierValue($data['identifier']);
         $data['graduated'] = $this->prepareGraduatedValue($data['graduated']);
 
-        mysqli_query($connection->getConnection(),"INSERT INTO subscription 
+        mysqli_query($mysqlConnection,"INSERT INTO subscription 
                                                       (name, email, identifier, birth_date, graduated, state)
                                                   VALUES 
                                                       ('".$data['name']."', '".$data['email']."',
@@ -95,7 +42,7 @@ class Subscription
                                                       ".$data['graduated'].", '".$data['state']."
                                                       ')");
 
-        if (mysqli_error($connection)) {
+        if (mysqli_error($mysqlConnection)) {
             return false;
         }
 
