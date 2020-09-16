@@ -2,6 +2,8 @@
 
 namespace SRC\Model;
 
+use SRC\Service\Email\Email;
+use SRC\Service\Persistence\Connection;
 use SRC\Service\Repository\SubscriptionRepository;
 use SRC\Service\Validation\Validator;
 
@@ -47,7 +49,7 @@ class Subscription
 
     private function prepareGraduatedValue($value)
     {
-        return $value == 'S' ? 'true' : 'false';
+        return $value == 'S' ? true : false;
     }
 
     private function prepareIdentifierValue($value)
@@ -62,9 +64,12 @@ class Subscription
             'BA' => 'Meu rei, você está inscrito!',
         ];
 
+        $email = new Email();
+
         if (!empty($states[$data['email']])) {
-            $email = new Email();
-            $email->send($data['email'], $states[$data['email']]);
+             return $email->send($data['email'], $states[$data['email']]);
         }
+
+        $email->send($data['email'], 'Parabéns, inscrição realizada com sucesso!');
     }
 }
