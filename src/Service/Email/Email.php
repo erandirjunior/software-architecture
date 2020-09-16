@@ -1,6 +1,6 @@
 <?php
 
-namespace SRC\Model;
+namespace SRC\Service\Email;
 
 class Email
 {
