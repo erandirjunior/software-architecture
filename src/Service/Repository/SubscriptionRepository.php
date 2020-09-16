@@ -2,7 +2,7 @@
 
 namespace SRC\Service\Repository;
 
-use SRC\Model\Connection;
+use SRC\Service\Persistence\Connection;
 
 class SubscriptionRepository
 {
@@ -15,18 +15,19 @@ class SubscriptionRepository
 
     public function save($data)
     {
-        mysqli_query($this->connection,"INSERT INTO subscription 
+        $stmt = $this->connection->prepare("INSERT INTO subscription 
                                                       (name, email, identifier, birth_date, graduated, state)
                                                   VALUES 
-                                                      ('".$data['name']."', '".$data['email']."',
-                                                      ".$data['identifier'].", '".$data['birth_date']."',
-                                                      ".$data['graduated'].", '".$data['state']."
-                                                      ')");
+                                                      (?, ?, ?, ?, ?, ?)");
 
-        if (mysqli_error($this->connection)) {
-            return false;
-        }
+        $stmt->bindValue(1, $data['name']);
+        $stmt->bindValue(2, $data['email']);
+        $stmt->bindValue(3, $data['identifier']);
+        $stmt->bindValue(4, $data['birth_date']);
+        $stmt->bindValue(5, $data['graduated']);
+        $stmt->bindValue(6, $data['state']);
+        $stmt->execute();
 
-        return true;
+        return $stmt->rowCount() > 0;
     }
 }

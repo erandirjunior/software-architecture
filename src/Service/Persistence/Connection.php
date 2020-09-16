@@ -1,11 +1,18 @@
 <?php
 
-namespace SRC\Model;
+namespace SRC\Service\Persistence;
 
 class Connection
 {
     public function getConnection()
     {
-        return mysqli_connect("db", "root", "root", "phpbr_event");
+        try {
+            $pdo = new \PDO("mysql:host=db;dbname=phpbr_event", "root", "root");
+            $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+
+            return $pdo;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
     }
 }
