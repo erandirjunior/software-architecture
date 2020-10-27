@@ -26,22 +26,22 @@
             </div>
             <div class="box-body">
                 <?php
-                    if (!empty($success)) {
+                    if (!empty($response) && $response) {
                 ?>
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <p class="msg msg-success"><?=$success?></p>
+                            <p class="msg msg-success">Sucesso ao realizar a inscrição!</p>
                         </div>
                     </div>
                 <?php
                     }
                 ?>
                 <?php
-                    if (!empty($error)) {
+                    if (isset($response) && !$response) {
                 ?>
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <p class="msg msg-error"><?=$error?></p>
+                            <p class="msg msg-error">Houve um erro ao realizar a inscrição!</p>
                         </div>
                     </div>
                 <?php

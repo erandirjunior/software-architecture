@@ -8,8 +8,8 @@ use \PlugRoute\Http\RequestCreator;
 
 $route = new PlugRoute(new RouteContainer(), RequestCreator::create());
 
-$route->get('/', 'SRC\Controller\SubscriptionController@index');
+$route->get('/', 'SRC\Infrastructure\Controller\Index@index');
 
-$route->post('/', 'SRC\Controller\SubscriptionController@register');
+$route->post('/', 'SRC\Infrastructure\Controller\Registry@register');
 
 $route->on();
